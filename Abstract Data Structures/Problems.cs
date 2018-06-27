@@ -45,21 +45,21 @@ namespace Abstract_Data_Structures
             meList.Print();
         }
 
+        public static void DeletionDemo_CLL()
+        {
+            var meList = TakeInputList_CLL();
+            //Console.WriteLine("Enter the position at which you want to delete a node");
+            //int nth = Convert.ToInt32(Console.ReadLine());
+            meList.Delete(true);
+            meList.Print();
+        }
+
         #endregion
 
         #region nth number from end in a list
         public static void NthNumberfromEndDemo()
         {
-            MyList<int> meList = new MyList<int>();
-            Console.WriteLine("Enter the number of elements in List");
-            int numbers = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter elements of List\n ");
-            int i = 1;
-            while (i <= numbers)
-            {
-                meList.AddAt(i++, Convert.ToInt32(Console.ReadLine()));
-            }
-
+            MyList<int> meList =TakeInputList();
             Console.WriteLine("Enter the position from end which you want to see");
             int nth = Convert.ToInt32(Console.ReadLine());
             int nodeContent = meList.NthNodeFromEnd(nth).NodeContent;
@@ -203,7 +203,15 @@ namespace Abstract_Data_Structures
         {
             for (int i = 1; i <= myList.Count; i++)
             {
-                Console.Write(myList.Retrieve(i).nodeContent);
+                Console.Write(myList.Retrieve(i).NodeContent);
+            }
+        }
+
+        public static void Print<T>(this CLL<T> myList)
+        {
+            for (int i = 1; i <= myList.Count; i++)
+            {
+                Console.Write(myList.Retrieve(i).NodeContent);
             }
         }
 
@@ -232,6 +240,21 @@ namespace Abstract_Data_Structures
             while (i <= numbers)
             {
                 meList.AddAt(i++, Convert.ToInt32(Console.ReadLine()));
+            }
+            return meList;
+        }
+
+        public static CLL<int> TakeInputList_CLL()
+        {
+            CLL<int> meList = new CLL<int>();
+            Console.WriteLine("Enter the number of elements in List");
+            int numbers = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter elements of List\n ");
+            int i = 1;
+            while (i <= numbers)
+            {
+                meList.Insert(Convert.ToInt32(Console.ReadLine()),false);
+                i++;
             }
             return meList;
         }

@@ -17,9 +17,9 @@ namespace Abstract_Data_Structures
     /// 
     public class DLLNode<T>
     {
-        public T nodeContent;
-        public DLLNode<T> prevNode;
-        public DLLNode<T> nextNode;
+        public T NodeContent;
+        public DLLNode<T> PrevNode;
+        public DLLNode<T> NextNode;
     }
     public class DLL<T>
     {
@@ -50,9 +50,9 @@ namespace Abstract_Data_Structures
             else
             {
                 DLLNode<T> returnNode = Head;
-                for (int i = 1; i < index && returnNode.nextNode != null; i++)
+                for (int i = 1; i < index && returnNode.NextNode != null; i++)
                 {
-                    returnNode = returnNode.nextNode;
+                    returnNode = returnNode.NextNode;
                 }
                 return returnNode;
             }
@@ -66,14 +66,14 @@ namespace Abstract_Data_Structures
             {
                 DLLNode<T> newNode = new DLLNode<T>
                 {
-                    nodeContent = nodeContent
+                    NodeContent = nodeContent
                 };
                 if (position == 1)
                 {
-                    newNode.nextNode = Head;
-                    newNode.prevNode = null;
+                    newNode.NextNode = Head;
+                    newNode.PrevNode = null;
                     if (Head != null)
-                        Head.prevNode = newNode;
+                        Head.PrevNode = newNode;
                     Head = newNode;
                 }
                 else
@@ -81,20 +81,20 @@ namespace Abstract_Data_Structures
                     DLLNode<T> temp = Head;
                     for (int i = 1; i < position - 1; i++)
                     {
-                            temp = temp.nextNode;
+                            temp = temp.NextNode;
                     }
-                    if (temp.nextNode == null)
+                    if (temp.NextNode == null)
                     {
-                        newNode.nextNode = null;
-                        newNode.prevNode = temp;
-                        temp.nextNode = newNode;
+                        newNode.NextNode = null;
+                        newNode.PrevNode = temp;
+                        temp.NextNode = newNode;
                     }
                     else
                     {
-                        newNode.nextNode = temp.nextNode;
-                        newNode.prevNode = temp;
-                        temp.nextNode.prevNode = newNode;
-                        temp.nextNode = newNode;
+                        newNode.NextNode = temp.NextNode;
+                        newNode.PrevNode = temp;
+                        temp.NextNode.PrevNode = newNode;
+                        temp.NextNode = newNode;
                     }
                     temp = null;
                 }
@@ -111,7 +111,7 @@ namespace Abstract_Data_Structures
             }
             if (position == 1)
             {
-                if (Head.nextNode == null)
+                if (Head.NextNode == null)
                 {
                     Head = null;
                     size--;
@@ -119,8 +119,8 @@ namespace Abstract_Data_Structures
                 }
                 else
                 {
-                    Head.nextNode.prevNode = null;
-                    Head = Head.nextNode;
+                    Head.NextNode.PrevNode = null;
+                    Head = Head.NextNode;
                 }
             }
             else
@@ -128,18 +128,18 @@ namespace Abstract_Data_Structures
                 DLLNode<T> temp = Head;
                 for (int i = 1; i <= position - 1; i++)
                 {
-                    temp = temp.nextNode;
+                    temp = temp.NextNode;
                 }
-                if (temp.nextNode == null)
+                if (temp.NextNode == null)
                 {
-                    temp.prevNode.nextNode = null;
-                    temp.prevNode = null;
+                    temp.PrevNode.NextNode = null;
+                    temp.PrevNode = null;
                     temp = null;
                 }
                 else 
                 {
-                    temp.prevNode.nextNode = temp.nextNode;
-                    temp.nextNode.prevNode = temp.prevNode;
+                    temp.PrevNode.NextNode = temp.NextNode;
+                    temp.NextNode.PrevNode = temp.PrevNode;
                     temp = null;
                 }
             }
@@ -150,15 +150,15 @@ namespace Abstract_Data_Structures
         {
             DLLNode<T> targetNode = new DLLNode<T>
             {
-                nodeContent = NodeContent
+                NodeContent = NodeContent
             };
             if (Head != null)
             {
                 DLLNode<T> iteratorNode = Head;
-                while (iteratorNode.nextNode != null)
-                    iteratorNode = iteratorNode.nextNode;
-                iteratorNode.nextNode = targetNode;
-                targetNode.prevNode = iteratorNode;
+                while (iteratorNode.NextNode != null)
+                    iteratorNode = iteratorNode.NextNode;
+                iteratorNode.NextNode = targetNode;
+                targetNode.PrevNode = iteratorNode;
                 iteratorNode = null;
             }
             else
@@ -179,7 +179,7 @@ namespace Abstract_Data_Structures
             }
             while(temp != null)
             {
-                if (temp.nodeContent.Equals(NodeContent))
+                if (temp.NodeContent.Equals(NodeContent))
                 {
                     RemoveAt(position);
                     break;
@@ -187,7 +187,7 @@ namespace Abstract_Data_Structures
                 else
                 {
                     position++;
-                    temp = temp.nextNode;
+                    temp = temp.NextNode;
                 }
             }
             temp = null;

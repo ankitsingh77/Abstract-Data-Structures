@@ -26,6 +26,14 @@ namespace Abstract_Data_Structures
             size = 0;
         }
 
+        public int Count
+        {
+            get
+            {
+                return size;
+            }
+        }
+
         public void Insert(T NodeContent, bool insertAtBegin)
         {
             Node<T> temp = new Node<T>() { NodeContent = NodeContent };
@@ -76,6 +84,28 @@ namespace Abstract_Data_Structures
                 temp.nextNode = Head;
             }
             size--;
+        }
+
+        /// <summary>
+        /// Retrives node at position index from Head node.
+        /// </summary>
+        /// <param name="index">Postion from Head</param>
+        /// <returns></returns>
+        public Node<T> Retrieve(int index)
+        {
+            if (index > size)
+            {
+                throw new Exception("No element at index " + index);
+            }
+            else
+            {
+                Node<T> returnNode = Head;
+                for (int i = 1; i < index && returnNode.nextNode != Head; i++)
+                {
+                    returnNode = returnNode.nextNode;
+                }
+                return returnNode;
+            }
         }
     }
 }
