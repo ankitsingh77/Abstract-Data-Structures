@@ -94,7 +94,9 @@ namespace Abstract_Data_Structures
             }
 
             Node<int> list3 = MyList<int>.MergeLists(list1.Head, list2.Head);
-            if (MyList<int>.CycleFound(list3, out Node<int> intersectionNode, out int position))
+            Node<int> intersectionNode = new Node<int>();
+            int position = 0;
+            if (MyList<int>.CycleFound(list3, out intersectionNode, out position))
             {
                 Console.WriteLine("Cycle found at postion: {0} with Node Value:{1}", position, intersectionNode.NodeContent);
             }
