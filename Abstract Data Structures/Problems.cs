@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="Problems.cs" company="Microsoft">
+// <copyright file="Problems.cs" company="None">
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -93,10 +93,10 @@ namespace Abstract_Data_Structures
                 j++;
             }
 
-            Node<int> list3 = MyList<int>.MergeLists(list1.Head, list2.Head);
+            Node<int> list3 = list1.Head.MergeLists(list2.Head);
             Node<int> intersectionNode = new Node<int>();
             int position = 0;
-            if (MyList<int>.CycleFound(list3, out intersectionNode, out position))
+            if (list3.CycleFound(out intersectionNode, out position))
             {
                 Console.WriteLine("Cycle found at postion: {0} with Node Value:{1}", position, intersectionNode.NodeContent);
             }
@@ -121,7 +121,7 @@ namespace Abstract_Data_Structures
                 meList.AddAt(i++, Convert.ToInt32(Console.ReadLine()));
             }
 
-            MyList<int> reversedList = MyList<int>.ReverseList(meList);
+            MyList<int> reversedList = meList.ReverseList();
 
             Console.WriteLine("ReversedList : ");
             while (reversedList.Head != null)
@@ -141,8 +141,8 @@ namespace Abstract_Data_Structures
 
             Console.WriteLine("Enter Merge index ");
             int n = Convert.ToInt32(Console.ReadLine());
-            MyList<int>.MergeListsAt(ref list1, ref list2, true, n);
-            Node<int> intersectingNode = MyList<int>.IntersectionNode(list1, list2);
+            list1.MergeListsAt(ref list2, true, n);
+            Node<int> intersectingNode = list1.IntersectionNode(list2);
             Console.WriteLine("Intersecting Node: {0}", intersectingNode.NodeContent);
         }
 
@@ -216,7 +216,6 @@ namespace Abstract_Data_Structures
                 Console.Write(myList.Retrieve(i).NodeContent);
             }
         }
-
 
         public static MyList<int> TakeInputList()
         {
