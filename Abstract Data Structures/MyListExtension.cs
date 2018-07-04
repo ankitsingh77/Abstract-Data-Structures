@@ -8,7 +8,7 @@ namespace Abstract_Data_Structures
 {
     public static class MyListExtension
     {
-        public static Node<T> NthNodeFromEnd<T>(this MyList<T> list,int n)
+        public static Node<T> NthNodeFromEnd<T>(this MyList<T> list, int n)
         {
             Node<T> temp = list.Head;
             Node<T> temp1 = list.Head;
@@ -74,6 +74,48 @@ namespace Abstract_Data_Structures
             }
             intersectionNode = slowptr;
             return true;
+        }
+
+        public static int CycleLength<T>(this MyList<T> list)
+        {
+            int length = 0;
+            if(list.Head==null)
+            {
+                return 0;
+            }
+            Node<T> fastPtr = list.Head;
+            Node<T> slowPtr = list.Head;
+            while (fastPtr.nextNode != null)
+            {
+                fastPtr = fastPtr.nextNode;
+                slowPtr = slowPtr.nextNode;
+                if (fastPtr.nextNode != null && fastPtr.nextNode != slowPtr)
+                {
+                    fastPtr = fastPtr.nextNode;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            if (fastPtr.nextNode == null)
+                return 0;
+            else
+            {
+                fastPtr = fastPtr.nextNode;
+                length = 1;
+            }
+            fastPtr = fastPtr.nextNode;
+            if(fastPtr==slowPtr)
+            {
+                return length;
+            }
+            while (slowPtr != fastPtr)
+            {
+                fastPtr = fastPtr.nextNode;
+                length++;
+            }
+            return length;
         }
 
         public static MyList<T> ReverseList<T>(this MyList<T> list)

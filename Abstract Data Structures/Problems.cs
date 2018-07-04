@@ -59,7 +59,7 @@ namespace Abstract_Data_Structures
         #region nth number from end in a list
         public static void NthNumberfromEndDemo()
         {
-            MyList<int> meList =TakeInputList();
+            MyList<int> meList = TakeInputList();
             Console.WriteLine("Enter the position from end which you want to see");
             int nth = Convert.ToInt32(Console.ReadLine());
             int nodeContent = meList.NthNodeFromEnd(nth).NodeContent;
@@ -107,6 +107,46 @@ namespace Abstract_Data_Structures
         }
 
         #endregion Find whether a list has a cycle or not. If yes at which node.
+
+        public static void CycleLengthDemo()
+        {
+            MyList<int> list = TakeInputList();
+
+            Console.WriteLine("Enter the node index where last node should point, 0 means no cycle");
+            int n1 = Convert.ToInt32(Console.ReadLine());
+            if (n1 == 0)
+            {
+                Console.WriteLine(string.Format("Cycle Length : {0}", list.CycleLength()));
+            }
+            else
+            {
+                if (n1 > list.Count())
+                {
+                    Console.WriteLine(string.Format("Index {0} cannot be greater than list size {1} ", n1, list.Count()));
+                }
+                else
+                {
+                    var temp = list.Head;
+                    Node<int> intersectingNode = null;
+                    if (n1 == 1)
+                    {
+                        intersectingNode = temp;
+                    }
+                    int tempposition = 1;
+                    while (temp.nextNode != null)
+                    {
+                        temp = temp.nextNode;
+                        tempposition++;
+                        if (tempposition == n1 && intersectingNode == null)
+                        {
+                            intersectingNode = temp;
+                        }
+                    }
+                    temp.nextNode = intersectingNode;
+                    Console.WriteLine(string.Format("Cycle Length : {0}", list.CycleLength()));
+                }
+            }
+        }
 
         #region reverse a list
         public static void ReversalDemo()
@@ -254,7 +294,7 @@ namespace Abstract_Data_Structures
             int i = 1;
             while (i <= numbers)
             {
-                meList.Insert(Convert.ToInt32(Console.ReadLine()),false);
+                meList.Insert(Convert.ToInt32(Console.ReadLine()), false);
                 i++;
             }
             return meList;

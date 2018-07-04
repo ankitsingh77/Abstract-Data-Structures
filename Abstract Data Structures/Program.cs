@@ -14,7 +14,7 @@ namespace Abstract_Data_Structures
             //Problems.ReversalDemo();
             //Problems.IntersectingListsDemo();
             //Problems.NthNumberfromEndDemo();
-            Problems.CyclicLinkDemo();
+            Problems.CycleLengthDemo();
             Console.ReadLine(); ;
         }
     }
