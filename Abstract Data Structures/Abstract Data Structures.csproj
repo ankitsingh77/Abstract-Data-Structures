@@ -52,6 +52,7 @@
     <Compile Include="CLL.cs" />
     <Compile Include="DLL.cs" />
     <Compile Include="MyList.cs" />
+    <Compile Include="MyListExtension.cs" />
     <Compile Include="Problems.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
