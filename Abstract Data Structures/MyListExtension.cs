@@ -8,6 +8,13 @@ namespace Abstract_Data_Structures
 {
     public static class MyListExtension
     {
+        /// <summary>
+        /// Finds a node at a given distance from end in a linked list.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list">Input List</param>
+        /// <param name="n">Distance from end of list.</param>
+        /// <returns>Node at a distance n from end of list.</returns>
         public static Node<T> NthNodeFromEnd<T>(this MyList<T> list, int n)
         {
             Node<T> temp = list.Head;
@@ -23,6 +30,13 @@ namespace Abstract_Data_Structures
             return temp1;
         }
 
+        /// <summary>
+        /// Merges two linked list
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list1">Head Node/Node from First list</param>
+        /// <param name="list2">Head Node/Node from Second list</param>
+        /// <returns>Head node of merged list. </returns>
         public static Node<T> MergeLists<T>(this Node<T> list1, Node<T> list2)
         {
             if (list1 == null || list2 == null)
@@ -38,6 +52,14 @@ namespace Abstract_Data_Structures
             return list1;
         }
 
+        /// <summary>
+        /// Finds wether if a list has cycle.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="start">Head node of list</param>
+        /// <param name="intersectionNode">Node at which cycle starts.</param>
+        /// <param name="position">Postion at which cycle starts.</param>
+        /// <returns>True if there is a cycle otherwise false.</returns>
         public static bool CycleFound<T>(this Node<T> start, out Node<T> intersectionNode, out int position)
         {
             intersectionNode = null;
@@ -76,6 +98,12 @@ namespace Abstract_Data_Structures
             return true;
         }
 
+        /// <summary>
+        /// Finds length of cycle in linked list.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list">Input List</param>
+        /// <returns>Length of the cyclic path.</returns>
         public static int CycleLength<T>(this MyList<T> list)
         {
             int length = 0;
@@ -118,6 +146,12 @@ namespace Abstract_Data_Structures
             return length;
         }
 
+        /// <summary>
+        /// Reverses a linked list.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list">Input List</param>
+        /// <returns>Reversed List</returns>
         public static MyList<T> ReverseList<T>(this MyList<T> list)
         {
             Node<T> nextNode = null;
