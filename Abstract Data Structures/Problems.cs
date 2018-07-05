@@ -151,23 +151,24 @@ namespace Abstract_Data_Structures
         #region reverse a list
         public static void ReversalDemo()
         {
-            MyList<int> meList = new MyList<int>();
-            Console.WriteLine("Enter the number of elements in List");
-            int numbers = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter elements of List\n ");
-            int i = 1;
-            while (i <= numbers)
-            {
-                meList.AddAt(i++, Convert.ToInt32(Console.ReadLine()));
-            }
-
+            var meList = TakeInputList();
+            var clonedList = meList.CloneList();
             MyList<int> reversedList = meList.ReverseList();
 
-            Console.WriteLine("ReversedList : ");
-            while (reversedList.Head != null)
+            Console.WriteLine("ReversedList (Iterative approach : ");
+            var temp = reversedList.Head;
+            while (temp != null)
             {
-                Console.WriteLine(reversedList.Head.NodeContent);
-                reversedList.Head = reversedList.Head.nextNode;
+                Console.WriteLine(temp.NodeContent);
+                temp = temp.nextNode;
+            }
+
+            Node<int> reversedListHead = MyListExtension.RecursiveListReversal(clonedList.Head);
+            Console.WriteLine("ReversedList (Recursive approach : ");
+            while (reversedListHead != null)
+            {
+                Console.WriteLine(reversedListHead.NodeContent);
+                reversedListHead = reversedListHead.nextNode;
             }
         }
         #endregion reverse a list

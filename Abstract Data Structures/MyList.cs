@@ -78,7 +78,7 @@ namespace Abstract_Data_Structures
                 }
                 size = size - 1;
             }
-        } 
+        }
 
         public Node<T> Retrieve(int index)
         {
@@ -99,19 +99,28 @@ namespace Abstract_Data_Structures
 
         public void AddNodeAtEnd(Node<T> node)
         {
-            Node<T> temp = this.Head;
-            Node<T> temp2 = node;
-            while (temp.nextNode != null)
-                temp = temp.nextNode;
-            int nodeSize = 1;
-            while (temp2.nextNode != null)
+            if (node == null)
+                return;
+            int inputNodeSize = 0;
+            var nodeTraveser = node;
+            while (nodeTraveser != null)
             {
-                nodeSize++;
-                temp2 = temp2.nextNode;
+                inputNodeSize++;
+                nodeTraveser = nodeTraveser.nextNode;
+            }
+            if (Head == null)
+            {
+                this.Head = node;
+                this.size = inputNodeSize;
+                return;
+            }
+            Node<T> temp = this.Head;
+            while (temp.nextNode != null)
+            {
+                temp = temp.nextNode;
             }
             temp.nextNode = node;
-            this.size += nodeSize;
+            this.size += inputNodeSize;
         }
-
     }
 }

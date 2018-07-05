@@ -168,6 +168,22 @@ namespace Abstract_Data_Structures
             return list;
         }
 
+        public static Node<T> RecursiveListReversal<T>( Node<T> listHead)
+        {
+            if (listHead == null)
+                return null;
+
+            if(listHead.nextNode ==null)
+            {
+                return listHead;
+            }
+            Node<T> secondElement = listHead.nextNode;
+            listHead.nextNode = null;
+            Node<T> reverseListHead = RecursiveListReversal(secondElement);
+            secondElement.nextNode = listHead; // Second Element will be the last element of reversed list.
+            return reverseListHead;
+        }
+
         public static void MergeListsAt<T>(this MyList<T> list1, ref MyList<T> list2, bool mergeonFirstList, int index)
         {
             Node<T> temp;
@@ -237,6 +253,26 @@ namespace Abstract_Data_Structures
                 return null;
             }
 
+        }
+
+        public static MyList<T> CloneList<T>(this MyList<T> inputList)
+        {
+            if (inputList == null)
+                return null;
+            MyList<T> clonedList = new MyList<T>();
+            var temp = inputList.Head;
+            if(temp==null)
+            {
+                return clonedList;
+            }
+            while (temp!=null)
+            {
+                Node<T> newNode = new Node<T>();
+                newNode.NodeContent = temp.NodeContent;
+                clonedList.AddNodeAtEnd(newNode);
+                temp = temp.nextNode;
+            }
+            return clonedList;            
         }
     }
 }
