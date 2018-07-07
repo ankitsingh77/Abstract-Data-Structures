@@ -4,12 +4,14 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Abstract_Data_Structures
+namespace Problems
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using InputOutputManger;
+    using Abstract_Data_Structures;
 
     /// <summary>
     /// TODO: Update summary.
@@ -151,8 +153,12 @@ namespace Abstract_Data_Structures
         #region reverse a list
         public static void ReversalDemo()
         {
-            var meList = TakeInputList();
-            var clonedList = meList.CloneList();
+            InputGenerator ioGenerator = new InputGenerator();
+            ioGenerator.MaxContentLength = 20;
+            ioGenerator.MinContentLength = 10;
+            var meList = InputStream.ReadFileAsMyList(ioGenerator.GenerateIntegerInputFile(900));
+            meList.Print();
+            var clonedList = meList.CloneList<int>();
             MyList<int> reversedList = meList.ReverseList();
 
             Console.WriteLine("ReversedList (Iterative approach : ");
@@ -163,7 +169,7 @@ namespace Abstract_Data_Structures
                 temp = temp.nextNode;
             }
 
-            Node<int> reversedListHead = MyListExtension.RecursiveListReversal(clonedList.Head);
+            Node<int> reversedListHead = MyListExtension.RecursiveListReversal<int>(clonedList.Head);
             Console.WriteLine("ReversedList (Recursive approach : ");
             while (reversedListHead != null)
             {
@@ -238,7 +244,7 @@ namespace Abstract_Data_Structures
         {
             for (int i = 1; i <= myList.Count(); i++)
             {
-                Console.Write(myList.Retrieve(i).NodeContent);
+                Console.WriteLine(myList.Retrieve(i).NodeContent);
             }
         }
 
@@ -246,7 +252,7 @@ namespace Abstract_Data_Structures
         {
             for (int i = 1; i <= myList.Count; i++)
             {
-                Console.Write(myList.Retrieve(i).NodeContent);
+                Console.WriteLine(myList.Retrieve(i).NodeContent);
             }
         }
 
@@ -254,7 +260,7 @@ namespace Abstract_Data_Structures
         {
             for (int i = 1; i <= myList.Count; i++)
             {
-                Console.Write(myList.Retrieve(i).NodeContent);
+                Console.WriteLine(myList.Retrieve(i).NodeContent);
             }
         }
 
