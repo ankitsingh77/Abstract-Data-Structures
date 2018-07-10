@@ -31,7 +31,11 @@ namespace Problems
 
         public static void DeletionDemo()
         {
-            var meList = TakeInputList();
+            InputGenerator ioGenerator = new InputGenerator();
+            ioGenerator.MaxContentLength = 20;
+            ioGenerator.MinContentLength = 10;
+            var meList = InputStream.ReadFileAsMyList(ioGenerator.GenerateIntegerInputFile(20));
+            meList.Print();
             Console.WriteLine("Enter the position at which you want to delete a node");
             int nth = Convert.ToInt32(Console.ReadLine());
             meList.RemoveAt(nth);
@@ -40,7 +44,11 @@ namespace Problems
 
         public static void DeletionDemo_DLL()
         {
-            var meList = TakeInputList_DLL();
+            InputGenerator ioGenerator = new InputGenerator();
+            ioGenerator.MaxContentLength = 20;
+            ioGenerator.MinContentLength = 10;
+            var meList = InputStream.ReadFileAsDLL(ioGenerator.GenerateIntegerInputFile(20));
+            meList.Print();
             Console.WriteLine("Enter the position at which you want to delete a node");
             int nth = Convert.ToInt32(Console.ReadLine());
             meList.RemoveAt(nth);
@@ -49,7 +57,11 @@ namespace Problems
 
         public static void DeletionDemo_CLL()
         {
-            var meList = TakeInputList_CLL();
+            InputGenerator ioGenerator = new InputGenerator();
+            ioGenerator.MaxContentLength = 20;
+            ioGenerator.MinContentLength = 10;
+            var meList = InputStream.ReadFileAsCLL(ioGenerator.GenerateIntegerInputFile(20));
+            meList.Print();
             //Console.WriteLine("Enter the position at which you want to delete a node");
             //int nth = Convert.ToInt32(Console.ReadLine());
             meList.Delete(true);
@@ -61,7 +73,11 @@ namespace Problems
         #region nth number from end in a list
         public static void NthNumberfromEndDemo()
         {
-            MyList<int> meList = TakeInputList();
+            InputGenerator ioGenerator = new InputGenerator();
+            ioGenerator.MaxContentLength = 20;
+            ioGenerator.MinContentLength = 10;
+            var meList = InputStream.ReadFileAsMyList(ioGenerator.GenerateIntegerInputFile(20));
+            meList.Print();
             Console.WriteLine("Enter the position from end which you want to see");
             int nth = Convert.ToInt32(Console.ReadLine());
             int nodeContent = meList.NthNodeFromEnd(nth).NodeContent;
@@ -73,28 +89,11 @@ namespace Problems
         #region Find whether a list has a cycle or not. If yes at which node.
         public static void CyclicLinkDemo()
         {
-            MyList<int> list1 = new MyList<int>();
-            CLL<int> list2 = new CLL<int>();
-
-            Console.WriteLine("Enter the number of elements in first List");
-            int n1 = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter elements of First List\n ");
-            int i = 1;
-            while (i <= n1)
-            {
-                list1.AddAt(i++, Convert.ToInt32(Console.ReadLine()));
-            }
-
-            Console.WriteLine("Enter the number of elements in Second List");
-            int n2 = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter elements of First List\n ");
-            int j = 1;
-            while (j <= n2)
-            {
-                list2.Insert(Convert.ToInt32(Console.ReadLine()), false);
-                j++;
-            }
-
+            InputGenerator ioGenerator = new InputGenerator();
+            ioGenerator.MaxContentLength = 20;
+            ioGenerator.MinContentLength = 10;
+            var list1 = InputStream.ReadFileAsMyList(ioGenerator.GenerateIntegerInputFile(20));
+            var list2 = InputStream.ReadFileAsCLL(ioGenerator.GenerateIntegerInputFile(20));
             Node<int> list3 = list1.Head.MergeLists(list2.Head);
             Node<int> intersectionNode = new Node<int>();
             int position = 0;
@@ -112,8 +111,10 @@ namespace Problems
 
         public static void CycleLengthDemo()
         {
-            MyList<int> list = TakeInputList();
-
+            InputGenerator ioGenerator = new InputGenerator();
+            ioGenerator.MaxContentLength = 20;
+            ioGenerator.MinContentLength = 10;
+            var list = InputStream.ReadFileAsMyList(ioGenerator.GenerateIntegerInputFile(20));
             Console.WriteLine("Enter the node index where last node should point, 0 means no cycle");
             int n1 = Convert.ToInt32(Console.ReadLine());
             if (n1 == 0)
@@ -156,7 +157,7 @@ namespace Problems
             InputGenerator ioGenerator = new InputGenerator();
             ioGenerator.MaxContentLength = 20;
             ioGenerator.MinContentLength = 10;
-            var meList = InputStream.ReadFileAsMyList(ioGenerator.GenerateIntegerInputFile(900));
+            var meList = InputStream.ReadFileAsMyList(ioGenerator.GenerateIntegerInputFile(20));
             meList.Print();
             var clonedList = meList.CloneList<int>();
             MyList<int> reversedList = meList.ReverseList();
@@ -183,9 +184,16 @@ namespace Problems
 
         public static void IntersectingListsDemo()
         {
-            MyList<int> list1 = GetList(1);
-            MyList<int> list2 = GetList(2);
-
+            InputGenerator ioGenerator = new InputGenerator();
+            ioGenerator.MaxContentLength = 20;
+            ioGenerator.MinContentLength = 10;
+            var list1 = InputStream.ReadFileAsMyList(ioGenerator.GenerateIntegerInputFile(20));
+            Console.WriteLine("****************First List********************");
+            list1.Print();
+            Console.WriteLine("\n\n");
+            var list2 = InputStream.ReadFileAsMyList(ioGenerator.GenerateIntegerInputFile(20));
+            Console.WriteLine("****************Second List********************");
+            list2.Print();
             Console.WriteLine("Enter Merge index ");
             int n = Convert.ToInt32(Console.ReadLine());
             list1.MergeListsAt(ref list2, true, n);
@@ -194,23 +202,6 @@ namespace Problems
         }
 
         #endregion
-
-        #region GetList
-        public static MyList<int> GetList(int listNo)
-        {
-            MyList<int> meList = new MyList<int>();
-            Console.WriteLine("Enter the number of elements in List{0}", listNo);
-            int numbers = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter elements of List\n ");
-            int i = 1;
-            while (i <= numbers)
-            {
-                meList.AddAt(i++, Convert.ToInt32(Console.ReadLine()));
-            }
-
-            return meList;
-        }
-        #endregion GetList
 
         #region Clone CustomList
 

@@ -11,6 +11,7 @@ namespace InputOutputManger
     {
         public int MaxContentLength = UInt16.MaxValue;
         public int MinContentLength = 1;
+        static Random randomNumberGenerator = new Random();
 
         public string GenerateIntegerInputFile(string filePath = "")
         {
@@ -35,7 +36,6 @@ namespace InputOutputManger
                 }
                 filePath = dirPath + DateTime.Now.ToString("ddMMyyyyHHmmss_fff") + ".bin";
             }
-            Random randomNumberGenerator = new Random();
             int fileInputLength = randomNumberGenerator.Next(MinContentLength,MaxContentLength);
             StringBuilder builder = new StringBuilder();
             builder.Append(randomNumberGenerator.Next(minvalue,MaxValue));

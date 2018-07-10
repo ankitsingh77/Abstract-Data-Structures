@@ -50,5 +50,55 @@ namespace InputOutputManger
             }
             return list;
         }
+
+        public static DLL<int> ReadFileAsDLL(string filePath)
+        {
+            if (!File.Exists(filePath))
+            {
+                return null;
+            }
+            DLL<int> list = new DLL<int>();
+            using (FileStream inputStream = File.Open(filePath, FileMode.Open, FileAccess.Read))
+            {
+                byte[] inputArray = new byte[inputStream.Length];
+                inputStream.Read(inputArray, 0, inputArray.Length);
+                string inputvalues = ASCIIEncoding.ASCII.GetString(inputArray);
+                string[] values = inputvalues.Split(',');
+                foreach (var value in values ?? Enumerable.Empty<string>())
+                {
+                    int number;
+                    if (int.TryParse(value, out number))
+                    {
+                        list.Add(number);
+                    }
+                }
+            }
+            return list;
+        }
+
+        public static CLL<int> ReadFileAsCLL(string filePath)
+        {
+            if (!File.Exists(filePath))
+            {
+                return null;
+            }
+            CLL<int> list = new CLL<int>();
+            using (FileStream inputStream = File.Open(filePath, FileMode.Open, FileAccess.Read))
+            {
+                byte[] inputArray = new byte[inputStream.Length];
+                inputStream.Read(inputArray, 0, inputArray.Length);
+                string inputvalues = ASCIIEncoding.ASCII.GetString(inputArray);
+                string[] values = inputvalues.Split(',');
+                foreach (var value in values ?? Enumerable.Empty<string>())
+                {
+                    int number;
+                    if (int.TryParse(value, out number))
+                    {
+                        list.Insert(number,false);
+                    }
+                }
+            }
+            return list;
+        }
     }
 }

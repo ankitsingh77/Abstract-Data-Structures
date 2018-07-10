@@ -168,6 +168,12 @@ namespace Abstract_Data_Structures
             return list;
         }
 
+        /// <summary>
+        /// Recursive method to reverse a linked list.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="listHead">Head node of list to be reversed.</param>
+        /// <returns>Head node of reversed list.</returns>
         public static Node<T> RecursiveListReversal<T>( Node<T> listHead)
         {
             if (listHead == null)
@@ -183,7 +189,14 @@ namespace Abstract_Data_Structures
             secondElement.nextNode = listHead; // Second Element will be the last element of reversed list.
             return reverseListHead;
         }
-
+        /// <summary>
+        /// Merges a list to another at a given index.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list1"></param>
+        /// <param name="list2"></param>
+        /// <param name="mergeonFirstList"></param>
+        /// <param name="index"></param>
         public static void MergeListsAt<T>(this MyList<T> list1, ref MyList<T> list2, bool mergeonFirstList, int index)
         {
             Node<T> temp;
@@ -215,6 +228,13 @@ namespace Abstract_Data_Structures
             }
         }
 
+        /// <summary>
+        /// Finds whether have common intersecting node.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list1"></param>
+        /// <param name="list2"></param>
+        /// <returns>Null, if no intersecting node, else return intercting node.</returns>
         public static Node<T> IntersectionNode<T>(this MyList<T> list1, MyList<T> list2)
         {
             Node<T> temp1;
@@ -255,6 +275,12 @@ namespace Abstract_Data_Structures
 
         }
 
+        /// <summary>
+        /// Clones a list data to a new list.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="inputList"></param>
+        /// <returns></returns>
         public static MyList<T> CloneList<T>(this MyList<T> inputList)
         {
             if (inputList == null)
