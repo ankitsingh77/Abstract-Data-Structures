@@ -29,6 +29,7 @@ namespace Problems
             Console.WriteLine("8. Deletion in circular linked list(CLL)");
             Console.WriteLine("9. Find middle element in single linked list");
             Console.WriteLine("10. Find if a list is of even/odd length");
+            Console.WriteLine("11. Reverse a List in Pairs") ;
             int option = Convert.ToInt32(Console.ReadLine());
             switch (option)
             {
@@ -90,6 +91,12 @@ namespace Problems
                     {
                         Console.WriteLine("*********Even or Odd Length***********");
                         Problems.EvenLengthListDemo();
+                        break;
+                    }
+                case 11:
+                    {
+                        Console.WriteLine("*********Reverse List in Pairs***********");
+                        Problems.ReverseListinPairsDemo();
                         break;
                     }
                 default:

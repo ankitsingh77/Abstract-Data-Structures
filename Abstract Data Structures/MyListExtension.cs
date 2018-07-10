@@ -352,5 +352,35 @@ namespace Abstract_Data_Structures
             }
             return true;
         }
+
+        /// <summary>
+        /// Reverses a list in pairs
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="inputList"></param>
+        public static void ReverseListInPairs<T>(this MyList<T> inputList)
+        {
+            Node<T> current = inputList.Head;
+            Node<T> temp;
+            Node<T> temp2;
+            var prevNode = current;
+            while(current!=null && current.nextNode !=null)
+            {
+                temp = current.nextNode;
+                temp2 = temp.nextNode;
+                temp.nextNode = current;
+                current.nextNode = temp2;
+                if(current == inputList.Head)
+                {
+                    inputList.Head = temp;
+                }
+                else
+                {
+                    prevNode.nextNode = temp;
+                    prevNode = current;
+                }
+                current = current.nextNode;
+            }            
+        }
     }
 }

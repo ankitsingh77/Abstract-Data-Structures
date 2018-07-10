@@ -178,6 +178,15 @@ namespace Problems
             Console.WriteLine(string.Format("List is of {0} length", meList.IsEvenLength() ? "Even" : "Odd"));
         }
 
+        public static void ReverseListinPairsDemo()
+        {
+            var meList = TakeInputList();
+            meList.Print();
+            meList.ReverseListInPairs();
+            Console.WriteLine("Paired reversed list::");
+            meList.Print();
+        }
+
         public static CustomNode CloneCustomList(CustomNode head)
         {
             CustomNode X;
