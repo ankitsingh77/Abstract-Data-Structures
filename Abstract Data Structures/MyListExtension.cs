@@ -300,5 +300,57 @@ namespace Abstract_Data_Structures
             }
             return clonedList;            
         }
+
+        /// <summary>
+        /// Efficient approach to find middle node in a linked list.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="inputList"></param>
+        /// <returns>Middle Node</returns>
+        public static Node<T> FindMiddle<T>(this MyList<T> inputList)
+        {
+            Node<T> singleSpeedPointer = inputList.Head;
+            Node<T> doubleSpeedPointer = inputList.Head;
+            bool alternate = false;
+            while(doubleSpeedPointer!=null)
+            {
+                if (alternate)
+                {
+                    singleSpeedPointer = singleSpeedPointer.nextNode;
+                    doubleSpeedPointer = doubleSpeedPointer.nextNode;
+                    alternate = false;
+                }
+                else
+                {
+                    doubleSpeedPointer = doubleSpeedPointer.nextNode;
+                    alternate = true;
+                }
+            }
+            return singleSpeedPointer;
+        }
+
+        /// <summary>
+        /// Identifies if a linked list is of even length.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="inputList"></param>
+        /// <returns></returns>
+        public static bool IsEvenLength<T>(this MyList<T> inputList)
+        {
+            Node<T> temp = inputList.Head;
+            while (temp != null)
+            {
+                temp = temp.nextNode;
+                if (temp != null)
+                {
+                    temp = temp.nextNode;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

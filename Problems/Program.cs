@@ -9,6 +9,14 @@ namespace Problems
     {
         static void Main(string[] args)
         {
+            while (ExecuteDemo())
+            {
+                Console.WriteLine("");
+            }
+        }
+
+        private static bool ExecuteDemo()
+        {
             Console.WriteLine("*********Demonstration of Data Structure Problem**********");
             Console.WriteLine("Select Option");
             Console.WriteLine("1. Deletion in Single Linked List.");
@@ -19,8 +27,10 @@ namespace Problems
             Console.WriteLine("6. Find if two lists have an intersection node.");
             Console.WriteLine("7. Deletion in doubly linked list(DLL).");
             Console.WriteLine("8. Deletion in circular linked list(CLL)");
+            Console.WriteLine("9. Find middle element in single linked list");
+            Console.WriteLine("10. Find if a list is of even/odd length");
             int option = Convert.ToInt32(Console.ReadLine());
-            switch(option)
+            switch (option)
             {
                 case 1:
                     {
@@ -70,11 +80,24 @@ namespace Problems
                         Problems.DeletionDemo_CLL();
                         break;
                     }
+                case 9:
+                    {
+                        Console.WriteLine("*********Middle Element in single linked list***********");
+                        Problems.FindMiddleDemo();
+                        break;
+                    }
+                case 10:
+                    {
+                        Console.WriteLine("*********Even or Odd Length***********");
+                        Problems.EvenLengthListDemo();
+                        break;
+                    }
                 default:
                     break;
-                    
+
             }
-            Console.ReadLine();
+            Console.WriteLine("Do You want to continue execution for other options(y/n)?");
+            return Console.ReadKey().Key == ConsoleKey.Y;
         }
     }
 }

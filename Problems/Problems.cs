@@ -8,8 +8,6 @@ namespace Problems
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using InputOutputManger;
     using Abstract_Data_Structures;
 
@@ -26,15 +24,9 @@ namespace Problems
     }
     public static class Problems
     {
-
-        #region List delete demo
-
         public static void DeletionDemo()
         {
-            InputGenerator ioGenerator = new InputGenerator();
-            ioGenerator.MaxContentLength = 20;
-            ioGenerator.MinContentLength = 10;
-            var meList = InputStream.ReadFileAsMyList(ioGenerator.GenerateIntegerInputFile(20));
+            var meList = TakeInputList();
             meList.Print();
             Console.WriteLine("Enter the position at which you want to delete a node");
             int nth = Convert.ToInt32(Console.ReadLine());
@@ -44,10 +36,7 @@ namespace Problems
 
         public static void DeletionDemo_DLL()
         {
-            InputGenerator ioGenerator = new InputGenerator();
-            ioGenerator.MaxContentLength = 20;
-            ioGenerator.MinContentLength = 10;
-            var meList = InputStream.ReadFileAsDLL(ioGenerator.GenerateIntegerInputFile(20));
+            var meList = TakeInputList_DLL();
             meList.Print();
             Console.WriteLine("Enter the position at which you want to delete a node");
             int nth = Convert.ToInt32(Console.ReadLine());
@@ -57,10 +46,7 @@ namespace Problems
 
         public static void DeletionDemo_CLL()
         {
-            InputGenerator ioGenerator = new InputGenerator();
-            ioGenerator.MaxContentLength = 20;
-            ioGenerator.MinContentLength = 10;
-            var meList = InputStream.ReadFileAsCLL(ioGenerator.GenerateIntegerInputFile(20));
+            var meList = TakeInputList_CLL();
             meList.Print();
             //Console.WriteLine("Enter the position at which you want to delete a node");
             //int nth = Convert.ToInt32(Console.ReadLine());
@@ -68,15 +54,9 @@ namespace Problems
             meList.Print();
         }
 
-        #endregion
-
-        #region nth number from end in a list
         public static void NthNumberfromEndDemo()
         {
-            InputGenerator ioGenerator = new InputGenerator();
-            ioGenerator.MaxContentLength = 20;
-            ioGenerator.MinContentLength = 10;
-            var meList = InputStream.ReadFileAsMyList(ioGenerator.GenerateIntegerInputFile(20));
+            var meList = TakeInputList();
             meList.Print();
             Console.WriteLine("Enter the position from end which you want to see");
             int nth = Convert.ToInt32(Console.ReadLine());
@@ -84,16 +64,13 @@ namespace Problems
             Console.WriteLine("{0}th number from end is {1}", nth, nodeContent);
         }
 
-        #endregion nth number from end in a list
-
-        #region Find whether a list has a cycle or not. If yes at which node.
         public static void CyclicLinkDemo()
         {
             InputGenerator ioGenerator = new InputGenerator();
             ioGenerator.MaxContentLength = 20;
             ioGenerator.MinContentLength = 10;
-            var list1 = InputStream.ReadFileAsMyList(ioGenerator.GenerateIntegerInputFile(20));
-            var list2 = InputStream.ReadFileAsCLL(ioGenerator.GenerateIntegerInputFile(20));
+            var list1 = TakeInputList();
+            var list2 = TakeInputList_CLL();
             Node<int> list3 = list1.Head.MergeLists(list2.Head);
             Node<int> intersectionNode = new Node<int>();
             int position = 0;
@@ -107,14 +84,9 @@ namespace Problems
             }
         }
 
-        #endregion Find whether a list has a cycle or not. If yes at which node.
-
         public static void CycleLengthDemo()
         {
-            InputGenerator ioGenerator = new InputGenerator();
-            ioGenerator.MaxContentLength = 20;
-            ioGenerator.MinContentLength = 10;
-            var list = InputStream.ReadFileAsMyList(ioGenerator.GenerateIntegerInputFile(20));
+            var list = TakeInputList();
             Console.WriteLine("Enter the node index where last node should point, 0 means no cycle");
             int n1 = Convert.ToInt32(Console.ReadLine());
             if (n1 == 0)
@@ -151,13 +123,9 @@ namespace Problems
             }
         }
 
-        #region reverse a list
         public static void ReversalDemo()
         {
-            InputGenerator ioGenerator = new InputGenerator();
-            ioGenerator.MaxContentLength = 20;
-            ioGenerator.MinContentLength = 10;
-            var meList = InputStream.ReadFileAsMyList(ioGenerator.GenerateIntegerInputFile(20));
+            var meList = TakeInputList();
             meList.Print();
             var clonedList = meList.CloneList<int>();
             MyList<int> reversedList = meList.ReverseList();
@@ -178,20 +146,14 @@ namespace Problems
                 reversedListHead = reversedListHead.nextNode;
             }
         }
-        #endregion reverse a list
-
-        #region Intersecting Lists Demo
 
         public static void IntersectingListsDemo()
         {
-            InputGenerator ioGenerator = new InputGenerator();
-            ioGenerator.MaxContentLength = 20;
-            ioGenerator.MinContentLength = 10;
-            var list1 = InputStream.ReadFileAsMyList(ioGenerator.GenerateIntegerInputFile(20));
+            var list1 = TakeInputList();
             Console.WriteLine("****************First List********************");
             list1.Print();
             Console.WriteLine("\n\n");
-            var list2 = InputStream.ReadFileAsMyList(ioGenerator.GenerateIntegerInputFile(20));
+            var list2 = TakeInputList();
             Console.WriteLine("****************Second List********************");
             list2.Print();
             Console.WriteLine("Enter Merge index ");
@@ -201,9 +163,20 @@ namespace Problems
             Console.WriteLine("Intersecting Node: {0}", intersectingNode.NodeContent);
         }
 
-        #endregion
+        public static void FindMiddleDemo()
+        {
+            var meList = TakeInputList();
+            meList.Print();
+            Console.WriteLine("Middle node ::");
+            Console.WriteLine(meList.FindMiddle().NodeContent);
+        }
 
-        #region Clone CustomList
+        public static void EvenLengthListDemo()
+        {
+            var meList = TakeInputList();
+            meList.Print();
+            Console.WriteLine(string.Format("List is of {0} length", meList.IsEvenLength() ? "Even" : "Odd"));
+        }
 
         public static CustomNode CloneCustomList(CustomNode head)
         {
@@ -229,8 +202,6 @@ namespace Problems
             return cloneList[head];
         }
 
-        #endregion Clone CustomList
-
         public static void Print<T>(this MyList<T> myList)
         {
             for (int i = 1; i <= myList.Count(); i++)
@@ -255,47 +226,80 @@ namespace Problems
             }
         }
 
-        public static MyList<int> TakeInputList()
+        public static MyList<int> TakeInputList(bool isRandom = true, int MinContentLegth = 10, int MaxContentLength = 20, int MaxValue = 20)
         {
-            MyList<int> meList = new MyList<int>();
-            Console.WriteLine("Enter the number of elements in List");
-            int numbers = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter elements of List\n ");
-            int i = 1;
-            while (i <= numbers)
+            if (!isRandom)
             {
-                meList.AddAt(i++, Convert.ToInt32(Console.ReadLine()));
+                MyList<int> meList = new MyList<int>();
+                Console.WriteLine("Enter the number of elements in List");
+                int numbers = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter elements of List\n ");
+                int i = 1;
+                while (i <= numbers)
+                {
+                    meList.AddAt(i++, Convert.ToInt32(Console.ReadLine()));
+                }
+                return meList;
             }
-            return meList;
+            else
+            {
+                InputGenerator ioGenerator = new InputGenerator();
+                ioGenerator.MaxContentLength = MaxContentLength;
+                ioGenerator.MinContentLength = MinContentLegth;
+                var meList = InputStream.ReadFileAsMyList(ioGenerator.GenerateIntegerInputFile(MaxValue));
+                return meList;
+            }
         }
 
-        public static DLL<int> TakeInputList_DLL()
+        public static DLL<int> TakeInputList_DLL(bool isRandom = true, int MinContentLegth = 10, int MaxContentLength = 20, int MaxValue = 20)
         {
-            DLL<int> meList = new DLL<int>();
-            Console.WriteLine("Enter the number of elements in List");
-            int numbers = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter elements of List\n ");
-            int i = 1;
-            while (i <= numbers)
+            if (!isRandom)
             {
-                meList.AddAt(i++, Convert.ToInt32(Console.ReadLine()));
+                DLL<int> meList = new DLL<int>();
+                Console.WriteLine("Enter the number of elements in List");
+                int numbers = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter elements of List\n ");
+                int i = 1;
+                while (i <= numbers)
+                {
+                    meList.AddAt(i++, Convert.ToInt32(Console.ReadLine()));
+                }
+                return meList;
             }
-            return meList;
+            else
+            {
+                InputGenerator ioGenerator = new InputGenerator();
+                ioGenerator.MaxContentLength = MaxContentLength;
+                ioGenerator.MinContentLength = MinContentLegth;
+                var meList = InputStream.ReadFileAsDLL(ioGenerator.GenerateIntegerInputFile(MaxValue));
+                return meList;
+            }
         }
 
-        public static CLL<int> TakeInputList_CLL()
+        public static CLL<int> TakeInputList_CLL(bool isRandom = true, int MinContentLegth = 10, int MaxContentLength = 20, int MaxValue = 20)
         {
-            CLL<int> meList = new CLL<int>();
-            Console.WriteLine("Enter the number of elements in List");
-            int numbers = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter elements of List\n ");
-            int i = 1;
-            while (i <= numbers)
+            if (!isRandom)
             {
-                meList.Insert(Convert.ToInt32(Console.ReadLine()), false);
-                i++;
+                CLL<int> meList = new CLL<int>();
+                Console.WriteLine("Enter the number of elements in List");
+                int numbers = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter elements of List\n ");
+                int i = 1;
+                while (i <= numbers)
+                {
+                    meList.Insert(Convert.ToInt32(Console.ReadLine()), false);
+                    i++;
+                }
+                return meList;
             }
-            return meList;
+            else
+            {
+                InputGenerator ioGenerator = new InputGenerator();
+                ioGenerator.MaxContentLength = MaxContentLength;
+                ioGenerator.MinContentLength = MinContentLegth;
+                var meList = InputStream.ReadFileAsCLL(ioGenerator.GenerateIntegerInputFile(MaxValue));
+                return meList;
+            }
         }
     }
 }
