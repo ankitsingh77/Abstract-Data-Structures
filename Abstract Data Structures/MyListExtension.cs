@@ -107,7 +107,7 @@ namespace Abstract_Data_Structures
         public static int CycleLength<T>(this MyList<T> list)
         {
             int length = 0;
-            if(list.Head==null)
+            if (list.Head == null)
             {
                 return 0;
             }
@@ -134,7 +134,7 @@ namespace Abstract_Data_Structures
                 length = 1;
             }
             fastPtr = fastPtr.nextNode;
-            if(fastPtr==slowPtr)
+            if (fastPtr == slowPtr)
             {
                 return length;
             }
@@ -174,12 +174,12 @@ namespace Abstract_Data_Structures
         /// <typeparam name="T"></typeparam>
         /// <param name="listHead">Head node of list to be reversed.</param>
         /// <returns>Head node of reversed list.</returns>
-        public static Node<T> RecursiveListReversal<T>( Node<T> listHead)
+        public static Node<T> RecursiveListReversal<T>(Node<T> listHead)
         {
             if (listHead == null)
                 return null;
 
-            if(listHead.nextNode ==null)
+            if (listHead.nextNode == null)
             {
                 return listHead;
             }
@@ -287,18 +287,18 @@ namespace Abstract_Data_Structures
                 return null;
             MyList<T> clonedList = new MyList<T>();
             var temp = inputList.Head;
-            if(temp==null)
+            if (temp == null)
             {
                 return clonedList;
             }
-            while (temp!=null)
+            while (temp != null)
             {
                 Node<T> newNode = new Node<T>();
                 newNode.NodeContent = temp.NodeContent;
                 clonedList.AddNodeAtEnd(newNode);
                 temp = temp.nextNode;
             }
-            return clonedList;            
+            return clonedList;
         }
 
         /// <summary>
@@ -312,7 +312,7 @@ namespace Abstract_Data_Structures
             Node<T> singleSpeedPointer = inputList.Head;
             Node<T> doubleSpeedPointer = inputList.Head;
             bool alternate = false;
-            while(doubleSpeedPointer!=null)
+            while (doubleSpeedPointer != null)
             {
                 if (alternate)
                 {
@@ -364,13 +364,13 @@ namespace Abstract_Data_Structures
             Node<T> temp;
             Node<T> temp2;
             var prevNode = current;
-            while(current!=null && current.nextNode !=null)
+            while (current != null && current.nextNode != null)
             {
                 temp = current.nextNode;
                 temp2 = temp.nextNode;
                 temp.nextNode = current;
                 current.nextNode = temp2;
-                if(current == inputList.Head)
+                if (current == inputList.Head)
                 {
                     inputList.Head = temp;
                 }
@@ -380,7 +380,69 @@ namespace Abstract_Data_Structures
                     prevNode = current;
                 }
                 current = current.nextNode;
-            }            
+            }
+        }
+
+        public static void ReverseListinBlocks<T>(this MyList<T> inputList, int blockSize)
+        {
+            if (inputList.Count() < blockSize || blockSize == 1)
+            {
+                return;
+            }
+            Node<T> firstNode = inputList.Head;
+            Node<T> lastNode = null;
+            //Preserving blocksize + 1 th node.
+            int j = 1;
+            Node<T> temp = NexttoBlockSizeNode(inputList.Head, blockSize);
+            while (temp != null || j == 1)
+            {
+                // Reverse list upto blocksize.
+                Node<T> p1 = firstNode;
+                Node<T> p2 = p1.nextNode;
+                Node<T> p3 = p1.nextNode;
+                if (p1 != null)
+                    p1.nextNode = temp;
+                while (p3 != temp)
+                {
+                    p3 = p3.nextNode;
+                    p2.nextNode = p1;
+                    p1 = p2;
+                    p2 = p3;
+                }
+                if (firstNode == inputList.Head)
+                {
+                    inputList.Head = p1;
+                }
+                else
+                {
+                    lastNode.nextNode = p1;
+                }
+                lastNode = firstNode;
+                firstNode = temp;
+                if ((j + 1) * blockSize < inputList.Count())
+                {
+                    temp = NexttoBlockSizeNode(temp, blockSize);
+                }
+                else
+                {
+                    temp = null;
+                }
+                j++;
+            }
+        }
+
+        private static Node<T> NexttoBlockSizeNode<T>(Node<T> currentNode, int blockSize)
+        {
+            if (blockSize == 0 || currentNode == null)
+                return null;
+            var temp = currentNode;
+            int i = 0;
+            while (i < blockSize)
+            {
+                temp = temp.nextNode;
+                i++;
+            }
+            return temp;
         }
     }
 }

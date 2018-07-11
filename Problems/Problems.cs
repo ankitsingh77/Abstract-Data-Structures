@@ -187,6 +187,16 @@ namespace Problems
             meList.Print();
         }
 
+        public static void ReverseListInBlocksDemo()
+        {
+            var meList = TakeInputList();
+            meList.Print();
+            int blockSIze = new Random().Next(2, meList.Count());
+            meList.ReverseListinBlocks(blockSIze);
+            Console.WriteLine("Reversed list in block of {0}::",blockSIze);
+            meList.Print();
+        }
+
         public static CustomNode CloneCustomList(CustomNode head)
         {
             CustomNode X;
