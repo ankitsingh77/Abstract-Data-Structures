@@ -393,15 +393,15 @@ namespace Abstract_Data_Structures
             Node<T> lastNode = null;
             //Preserving blocksize + 1 th node.
             int j = 1;
-            Node<T> temp = NexttoBlockSizeNode(inputList.Head, blockSize);
-            while (temp != null || j == 1)
+            Node<T> temp = NexttoBlockSizeNode(inputList.Head, blockSize); //temp is the first element of next block, null if next block is less than block size.
+            while (temp != null || j == 1) //j==1 , test to handle the scenario if blocksize is equal to list length.
             {
                 // Reverse list upto blocksize.
-                Node<T> p1 = firstNode;
+                Node<T> p1 = firstNode; //firstNode is the first element of unreversed block.
                 Node<T> p2 = p1.nextNode;
                 Node<T> p3 = p1.nextNode;
                 if (p1 != null)
-                    p1.nextNode = temp;
+                    p1.nextNode = temp; //First element of block will become last element of block, this must point to first node of next block.
                 while (p3 != temp)
                 {
                     p3 = p3.nextNode;
@@ -409,15 +409,15 @@ namespace Abstract_Data_Structures
                     p1 = p2;
                     p2 = p3;
                 }
-                if (firstNode == inputList.Head)
+                if (firstNode == inputList.Head) // Handling of list head.s
                 {
                     inputList.Head = p1;
                 }
                 else
                 {
-                    lastNode.nextNode = p1;
+                    lastNode.nextNode = p1; //p1 points to (last node without reversal). so this becomes first node after reversal.
                 }
-                lastNode = firstNode;
+                lastNode = firstNode; // LastNode is the lastnode of previous block.
                 firstNode = temp;
                 if ((j + 1) * blockSize < inputList.Count())
                 {
