@@ -31,6 +31,7 @@ namespace Problems
             Console.WriteLine("10. Find if a list is of even/odd length");
             Console.WriteLine("11. Reverse a List in Pairs") ;
             Console.WriteLine("12. Reverse a List in block");
+            Console.WriteLine("13. Balancing of Symbols in a mathematical expression");
             int option = Convert.ToInt32(Console.ReadLine());
             switch (option)
             {
@@ -104,6 +105,12 @@ namespace Problems
                     {
                         Console.WriteLine("*********Reverse List in Blocks***********");
                         Problems.ReverseListInBlocksDemo();
+                        break;
+                    }
+                case 13:
+                    {
+                        Console.WriteLine("*********Balancing of Symbols in a mathematical expression***********");
+                        Problems.BalancingSymbolsDemo();
                         break;
                     }
                 default:

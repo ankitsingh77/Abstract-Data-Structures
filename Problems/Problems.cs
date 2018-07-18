@@ -10,7 +10,7 @@ namespace Problems
     using System.Collections.Generic;
     using InputOutputManger;
     using Abstract_Data_Structures;
-
+    using Stack;
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -195,6 +195,14 @@ namespace Problems
             meList.ReverseListinBlocks(blockSIze);
             Console.WriteLine("Reversed list in block of {0}::",blockSIze);
             meList.Print();
+        }
+
+        public static void BalancingSymbolsDemo()
+        {
+            Console.WriteLine("Enter the expression");
+            string expression = Console.ReadLine();
+            bool balanced = StackApplication.BalancingSymbols(expression);
+            Console.WriteLine(string.Format("Symbols are {0} in this expression.",balanced?"balanced":"not balanced"));
         }
 
         public static CustomNode CloneCustomList(CustomNode head)
