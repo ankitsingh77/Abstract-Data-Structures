@@ -58,6 +58,8 @@
   <ItemGroup>
     <Compile Include="CLL.cs" />
     <Compile Include="DLL.cs" />
+    <Compile Include="Deque.cs" />
+    <Compile Include="Interfaces\IDeque.cs" />
     <Compile Include="MyList.cs" />
     <Compile Include="MyListExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
